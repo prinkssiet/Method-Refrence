@@ -1,0 +1,37 @@
+package function;
+
+import java.util.List;
+
+public class methodRef {
+	
+	public static void print(Integer num) {
+		System.out.println("the string length "+num);
+		
+	}
+	
+	
+	
+	public static boolean even(Integer num) {
+		return num%2==0;
+	}
+
+	public static void main(String[] args) {
+		List.of("bat","cat","apple","elephant","fish","horse").stream().
+		map(a-> a.length()).forEach(b-> System.out.println(b));
+		
+		List.of("bat","cat","apple","elephant","fish","horse").stream().
+		map(a-> a.length()).forEach(methodRef::print);
+		
+		//List.of(14,20,18,25,42,26,17,11).stream().filter(n-> n%2==0).
+		//forEach(e-> System.out.println(e));
+		
+		int max= List.of(14,20,18,25,42,26,17,11).stream().filter(methodRef::even).
+		max(Integer::compare).orElse(0);
+		
+	System.out.println("the max = "+max);
+		
+		
+		}
+}
+
+
